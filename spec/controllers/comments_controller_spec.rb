@@ -31,5 +31,16 @@ RSpec.describe CommentsController, type: :controller do
 
       expect(response).to have_http_status :not_found
     end
+
+    it "should properly deal with validation errors" do
+      gram = FactoryBot.create(:gram)
+      user = FactoryBot.create(:user)
+      sign_in user
+
+      comment_count = Comment.count
+      post :create, params: {gram_id: gram.id, comment: { message: ''}}
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(comment_count).to eq Comment.count
+    end
   end
 end

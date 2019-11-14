@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
     if @comment.valid? then
       redirect_to root_path
     else
-      return render :new, status: :unprocessable_entity
+      return redirect_to root_path, status: :unprocessable_entity
     end
   end
 end
