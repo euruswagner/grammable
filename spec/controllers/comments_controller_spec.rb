@@ -39,7 +39,8 @@ RSpec.describe CommentsController, type: :controller do
 
       comment_count = Comment.count
       post :create, params: {gram_id: gram.id, comment: { message: ''}}
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to redirect_to root_path
+      expect(flash[:alert]).to be_present
       expect(comment_count).to eq Comment.count
     end
   end

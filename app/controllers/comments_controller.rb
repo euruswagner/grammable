@@ -18,9 +18,9 @@ class CommentsController < ApplicationController
 
   def is_valid
     if @comment.valid? then
-      redirect_to root_path
+      return redirect_to root_path
     else
-      return redirect_to root_path, status: :unprocessable_entity
+      return redirect_to root_path, alert: 'Comments can\'t be blank'
     end
   end
 end

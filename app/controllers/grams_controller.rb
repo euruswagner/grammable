@@ -53,7 +53,7 @@ class GramsController < ApplicationController
 
   def is_valid
     if @gram.valid? then
-      redirect_to root_path
+      return redirect_to root_path
     else
       return render :new, status: :unprocessable_entity
     end
